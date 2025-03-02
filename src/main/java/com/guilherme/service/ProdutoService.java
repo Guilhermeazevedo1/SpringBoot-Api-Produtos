@@ -15,11 +15,14 @@ public class ProdutoService {
     }
 
     public Produto salvar(Produto produto){
+        if ((produto.getNome() == null) || (produto.getPreco() <= 0)){
+            throw new RuntimeException("o Produto informado não pode conter preço ou nome nulo");
+        }
         return repository.save(produto);
     }
 
     public Produto findById(Long id){
-        return repository.findById(id).orElseThrow(()-> new RuntimeException("O id informado não existe " + id));
+        return repository.findById(id).orElseThrow(()-> new RuntimeException("O id não existe " + id));
     }
 
     public List<Produto> findByAll(){
@@ -35,8 +38,7 @@ public class ProdutoService {
     }
 
     public Produto atualizar(Long id, Produto produtoAtualizado){
-        Produto produtoExistente = repository.findById(id)
-                .orElseThrow(()-> new RuntimeException("O id informado não existe " + id));
+        Produto produtoExistente = repository.findById(id).orElseThrow(()-> new RuntimeException("O id informado não existe " + id));
 
         produtoExistente.setNome(produtoAtualizado.getNome());
         produtoExistente.setPreco(produtoAtualizado.getPreco());

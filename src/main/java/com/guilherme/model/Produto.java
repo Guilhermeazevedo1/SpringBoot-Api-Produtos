@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "/produto")
+@Table(name = "produto")
 public class Produto {
 
     @Id
@@ -17,7 +17,7 @@ public class Produto {
     private String nome;
 
     @Column(nullable = false)
-    private BigDecimal preco;
+    private double preco;
 
     @Column(nullable = false)
     private LocalDate dataValidade;
@@ -38,11 +38,11 @@ public class Produto {
         this.nome = nome;
     }
 
-    public BigDecimal getPreco() {
+    public double getPreco() {
         return preco;
     }
 
-    public void setPreco(BigDecimal preco) {
+    public void setPreco(double preco) {
         this.preco = preco;
     }
 
