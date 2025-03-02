@@ -19,7 +19,7 @@ public class ProdutoService {
     }
 
     public Produto findById(Long id){
-        return repository.findById(id).orElseThrow(()-> new RuntimeException("O Id informado não existe" + id));
+        return repository.findById(id).orElseThrow(()-> new RuntimeException("O id informado não existe " + id));
     }
 
     public List<Produto> findByAll(){
@@ -29,14 +29,14 @@ public class ProdutoService {
     public void deletar(Long id){
         if (repository.existsById(id)){
             repository.deleteById(id);
-        }else{
-            throw new RuntimeException("O Id informado não existe " + id);
+        }else {
+            throw new RuntimeException("O id informado não existe " + id);
         }
     }
 
     public Produto atualizar(Long id, Produto produtoAtualizado){
         Produto produtoExistente = repository.findById(id)
-                .orElseThrow(()-> new  RuntimeException("Produto não encontrado id " + id));
+                .orElseThrow(()-> new RuntimeException("O id informado não existe " + id));
 
         produtoExistente.setNome(produtoAtualizado.getNome());
         produtoExistente.setPreco(produtoAtualizado.getPreco());
